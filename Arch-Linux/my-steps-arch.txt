@@ -1,0 +1,182 @@
+################### SYSTEM ADMINISTRATION ###################
+
+0. Network configuration
+  > # Test network connection
+  > $ ping 8.8.8.8
+  > # If succesful skip to step 1
+  > # Check which kernel module contains the driver for your network device
+  > $ lspci -v
+  > # Check the driver was loaded
+  > $ dmesg | grep <kernel-module> (e.g. e1000e)
+  > # Get current device names
+  > $ ls /sys/class/net (or) $ ip link
+  > # Start dhcpcd daemon for a specific interface
+  > # Enable dhcpcd service (To be started on bootup)
+  > $ systemctl enable dhcpcd@<interface>.service (e.g. enp0s31f6)
+
+1. Add user
+  > $ useradd -m -G wheel -s /bin/bash <username>
+  > # -m creates the folder /home/<username>
+  > # -G wheel adds <username> to the weel group
+  > # -s /bin/bash defines bash as the user's default login shell
+  > # Set <username> password
+  > $ passwd <username>
+
+2. Install and configure sudo
+  > # Install sudo
+  > $ pacman -Syyu
+  > $ pacman -S sudo
+  > # Configure sudo
+  > $ EDITOR=nano visudo
+  > # Grant <username> sudo access
+  > Uncomment the following line to /etc/sudoers: %wheel ALL=(ALL) ALL
+
+3. Log in as <username>
+  > $ exit
+  > # Then enter your <username> login information
+
+4. Create relevant recovery files
+  > # Create recovery folder
+  > $ mkdir recovery
+  > # List of all excplicitly installed packages
+  > $ pacman -Qqe > recovery/pkglist.txt
+  > # List of all installed optional dependencies
+  > $ comm -13 <(pacman -Qqdt | sort) <(pacman -Qqdtt | sort) > optdeplist.txt
+  > # List of all dependencies of base and base-devel
+  > $ echo "List of all deps of base and base-devel" > recovery/deps-base.txt
+  > $ comm -23 <(pacman -Qq | sort) <(pacman -Qgq base base-devel | sort)
+      >> recovery/deps-base.txt
+  > # Backup of important directories
+  > $ sudo cp /etc recovery/
+  > $ sudo cp /var recovery/
+  > # Configuration files
+  > $ cp .* recovery/
+  > # Backup pacman database
+  > $ tar -cjf recovery/pacman_database.tar.bz2 /var/lib/pacman/local
+  > # Backup list of files
+  > $ find /etc /opt /usr | sort > recovery/all_files.txt
+  > $ pacman -Qlq | sed 's|/$||' | sort > recovery/owned_files.txt
+  > $ comm -23 all_files.txt owned_files.txt > recovery/unowned_files.txt
+
+5. Install the gnome and gnome-extra groups
+  > $ pacman -Syu
+  > $ pacman -S gnome
+  > $ pacman -S gnome-extra
+
+6. Enable the gdm display manager
+  > $ systemctl enable gdm.service
+
+7. Restart the system and log back in again using GDM (should start by default)
+  > $ systemctl reboot
+
+8. Install firefox and flashplugin
+  > $ pacman -Syu
+  > $ pacman -S firefox
+  > $ pacman -S flashplugin
+
+9. Install mesa-vdpau
+  > $ pacman -Syu
+  > $ pacman -S mesa-vdpau
+
+10. Install and configure Uncomplicated Firewall and its GUI
+  > $ pacman -Syu
+  > $ pacman -S ufw
+  > $ ufw default deny
+  > $ ufw allow 192.168.0.0/24
+  > $ ufw allow SSH
+  > $ ufw enable
+  > $ systemctl enable ufw.service
+  > # To list all rules added by the user
+  > $ ufw status
+  > # To list all default applications rules supported
+      (based on common ports used by them)
+  > $ ufw app list
+  > $ pacman -S gufw
+
+11. Install zsh
+  > $ pacman -Syu
+  > $ pacman -S zsh
+  > $ pacman -S zsh-completions
+  > # Run zsh for the first time and follow the basic configuration helper
+  > $ zsh
+  > # To set zsh as the default shell
+  > $ chsh -s /bin/zsh
+
+12. Install screenFetch
+  > $ pacman -Syu
+  > $ pacman -S screenfetch
+
+13. Install Oh my zsh framework
+  > $ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+
+14. Install patched powerline fonts (This is for the zsh agnoster theme)
+  > $ git clone https://github.com/powerline/fonts.git
+  > $ cd fonts
+  > $ ./install.sh
+  > $ cd ..
+  > $ rm -rf fonts
+
+15. Configure .zshrc
+  > $ nano .zshrc
+  > # set ZSH_THEME="agnoster"
+
+16. Install and configure terminator (transparent terminal)
+  > $ pacman -Syu
+  > $ pacman -S terminator
+  > $ mkdir .config/terminator
+  > $ nano .config/terminator/config
+  > # Add this lines:
+        [global_config]
+          borderless = True
+          window_state = maximise
+        [keybindings]
+        [layouts]
+          [[default]]
+            [[[child1]]]
+              parent = window0
+              type = Terminal
+            [[[window0]]]
+              parent = ""
+              type = Window
+        [plugins]
+        [profiles]
+          [[default]]
+            background_darkness = 0.78
+            background_image = None
+            background_type = transparent
+            font = DejaVu Sans Mono Bold 18
+            icon_bell = False
+            scrollback_infinite = True
+            scrollbar_position = hidden
+            show_titlebar = False
+
+17. Install Arc Theme
+  > $ pacman -Syu
+  > $ pacman -S arc-gtk-theme arc-icon-theme
+  > # Select Arc in the gtk and icon themes in the Gnome Tweak Tool
+  > # At the Gnome Tweak Tool enable User Themes in the Extensions tab
+  > # Select Arc in the shell theme too
+  > # Add terminator in the Startup Applications tab
+
+18. Install base-devel group
+  > $ pacman -Syu
+  > $ pacman -S --needed base-devel
+
+19. Remove Default Nautilus Directories
+  > # Edit .config/user-dirs.dirs and comment all directories you don't want
+  > # Make changes permanent after login
+  > $ echo "enabled=false" > ~/.config/user-dirs.conf
+
+20. Create builds and AUR directories
+  > $ mkdir ~/builds
+  > $ mkdir ~/builds/AUR
+
+21. Install sublime-text-dev (Sublime Text 3 beta)
+  > $ cd ~/builds/AUR
+  > $ git clone https://aur.archlinux.org/sublime-text-dev.git
+  > $ cd sublime-text-dev
+  > # Always check files for malicious code
+  > $ less PKGBUILD
+  > $ less sublime-text-dev.install
+  > $ makepkg -si
+  >
