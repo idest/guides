@@ -179,4 +179,12 @@
   > $ less PKGBUILD
   > $ less sublime-text-dev.install
   > $ makepkg -si
-  >
+
+22. Install nodejs npm for SublimeLinter
+  > $ pacman -S nodejs npm
+
+23. Install tidy for SublimeLinter-html-tidy
+  > $ pacman -S tidy
+
+24. Install pip and pip2 for SublimeLinter-pylint
+  > $ pacman -S python-pip python-pip2
