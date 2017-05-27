@@ -1,0 +1,65 @@
+1. Install Package Control
+  > # Go to packagecontrol.io/installation
+  > # Copy the code for Sublime Text 3
+  > # in ST3 go to View > Show Console, paste the code and hit enter
+  > # Close and open ST3 again
+
+2. Install predawn theme
+  > Ctrl + Shift + P
+  > Type: install, hit enter
+  > Type: predawn, hit enter
+  > Go to Preferences > Settings
+  > Modify the file in the "sublime-settings - User" tab to look like this:
+    > {
+        "ignored_packages":
+        [
+          "Vintage"
+        ],
+        // Predawn theme
+        "theme": "predawn-DEV.sublime-theme",
+        "color_scheme": "Packages/Predawn/predawn.tmTheme",
+        // Predawn Tab Options
+        "predawn_tabs_active_underline": false,
+        "predawn_tabs_large": false,
+        "predawn_tabs_medium": false,
+        "predawn_tabs_small": false,
+        // Predawn Sidebar Options
+        "predawn_sidebar_arrows": false,
+        "predawn_sidebar_large": false,
+        "predawn_sidebar_medium": false,
+        "predawn_sidebar_narrow": false,
+        "predawn_sidebar_small": false,
+        "predawn_sidebar_xlarge": false,
+        "predawn_sidebar_xsmall": false,
+        // Predawn Options
+        "predawn_findreplace_small": false,
+        "predawn_quick_panel_small": false,
+        // Other configuration
+        "font_size": 10,
+        "draw_white_space": "all",
+        "ensure_newline_at_eof_on_save": true,
+        "trim_trailing_white_space_on_save": true,
+        "rulers":
+        [
+          80
+        ],
+        // Match options
+        "match_brackets": false,
+        "match_brackets_angle": false,
+        "match_brackets_braces": false,
+        "match_brackets_content": false,
+        "match_brackets_square": false,
+        "match_tags": false
+      }
+
+
+
+1. Install Packages for ST3
+  > # In ST3:
+  > Ctrl + Shift + P
+  > Type install package, hit enter
+  > # Following the previous steps install the following packages
+    > Daylee Rees Color Scheme
+
+
+    > Predawn
