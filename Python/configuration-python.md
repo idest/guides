@@ -19,13 +19,13 @@ Add the following lines to `~/.zshrc`:
     export PROJECT_HOME=$HOME/projects
     source /usr/local/bin/virtualenvwrapper.sh
 
-###Useful Commands
+### Useful Commands
 
 * List all virtual environments  
   `workon`
 * Make a _project_ folder in $PROJECT_HOME and `cd` to it  
   `mkproject _project_`
 
-###Workflow
+### Workflow
 
 ...
