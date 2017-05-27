@@ -6,16 +6,24 @@ Pylint
 
 ### Install
 
-`pip install pylint` and `pip2 install pylint`
+* Using pacman (recommended):  
+  `pacman -S python-pylint` and `pacman -S python2-pyliny'
+
+* Using pip:  
+  `pip install pylint` and `pip2 install pylint`
 
 Virtualenv and virtualenvwrapper
 --------------------------------
 
 ### Install
 
-`pip install virtualenv`
+* Using pacman (recommended):  
+  `pacman -S python-virtualenv`  
+  `pacman -S python-virtualenvwrapper`
 
-`pip install virtualenvwrapper`
+* Using pip:  
+  `pip install virtualenv`  
+  `pip install virtualenvwrapper`
 
 Add the following lines to `~/.zshrc`:
 
@@ -41,4 +49,8 @@ Matplotlib
 
 ### Install
 
-`pip install matplotlib` and `pip2 install matplotlib`
+* Using pacman (recommended):  
+  `pacman -S python-matplotlib` and `pacman -S python2-matplotlib`
+
+* Using pip:  
+  `pip install matplotlib` and `pip2 install matplotlib`
