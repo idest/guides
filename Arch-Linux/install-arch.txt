@@ -1,0 +1,196 @@
+Install Archlinux / Dual Boot Windows (UEFI)
+
+1. Disable UEFI Secure Boot in the BIOS, and boot Windows.
+2. Edit the Windows registry to use UTC Time
+    > Run regedit, and add DWORD with hexadecimal value 1 for the registry:
+      HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation\
+      RealTimeIsUniversal
+3. Edit the Windows registry to turn off Fast Startup
+    > Run regedit, and add DWORD with hexadecimal value 0 for the registry:
+      HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Power\
+      HiberbootEnabled
+4. Using Disk Management, check your partitions labels and types to note which
+   partitions are essential to Windows to avoid messing with them later on.
+   (https://wiki.archlinux.org/index.php/Dual_boot_with_Windows#UEFI_Systems)
+5. Shrink the disk where you plan to install Archlinux
+    > Using disk management right click the Volume you want to shrink, and
+      select shrink volume. Then enter the amount to shrink and click shrink.
+      > You need three partitions: root, swap and home. For the root partition
+        you need at least 20GB, for the swap partition you need it to match the
+        amount of RAM you have, and for the home partition you need whatever
+        amount of space you want to store your files.
+        If you want to install linux using multiple drives, shrink the main
+        drive (e.g. SSD) to allow room for the root partition, and shrink your
+        other drive to allow room for the swap and home partitions.
+
+######### If you previously had another linux distribution installed #########
+.. Delete previous linux partitions from Windows using Disk Management
+.. Delete Grub from EFI partition
+    > Run cmd as administrator.
+      > $ diskpart
+      > $ list vol
+      > # Select the EFI partition volume (usually the only one in FAT32)
+      > $ sel vol <volume number>
+      > # Assign a letter to the volume (pick any one not currently assigned)
+      > $ assign letter=<letter>:
+      > $ exit
+      > $ cd /d <letter>:
+      > $ cd EFI
+      > # List all directories inside EFI directory
+      > $ dir
+      > # Remove the directory associated with your previous linux distribution
+      > $ rmdir /s <dir name>
+   If you still see your previous linux distribution in your BIOS boot options,
+   format windows and start this whole tutorial again.
+##############################################################################
+
+5. Download Arch Linux iso image from: http://...
+6. Create bootable usb flash drive with Arch Linux iso image
+    > To do so from Windows use Rufus
+      > For UEFI firmware boot mode select "GPT partition scheme for UEFI"
+      > If prompted to choose ISO image mode or DD image mode, choose DD
+7. Restart and boot from the usb flash drive
+8. Set the keyboard layout
+    > At the zhs terminal:
+      # List available layout files:
+      > $ ls /usr/share/kbd/keymaps/**/*.map.gz
+      # Choose your layout:
+      > $ loadkeys <your-layout-file> (omitting path and file extension
+                                       e.g. $ loadkeys es)
+9. Connect to the internet, if you have a wired connection it will most likely
+   connect automaticaly.
+    > # Test your internet connection:
+    > $ ping archlinux.org
+    > If it works hit ctrl + c and pass to the next step. If it doesn't refer
+      to:
+      https://wiki.archlinux.org/index.php/Network_configuration#Device_driver
+      or https://wiki.archlinux.org/index.php/Wireless_network_configuration
+10. Update the system clock
+    > $ timedatectl set-ntp true
+    > # To check the time:
+    > $ timedatectl status
+11. Partition the drive
+    > # List current partitions:
+    > $ fdisk -l
+    > # Backup partitions for your disk (or for each disk you have):
+    > $ sfdisk -d /dev/sda > sda.dump
+    > * To later restore this layout you can run: $ sfdisk /dev/sda < sda.dump
+    > # Run gdisk on the disk to partition
+    > $ gdisk /dev/sda
+    > # Show current partition table (use after each partition created)
+    > $ p
+    > # Create new partition (root partition)
+    > $ n
+    > $ Partition number: <enter> (just hit enter for default value)
+    > $ First sector: <enter>
+    > $ Last sector: +20G (amount in GB for the / partition)
+    > $ Hex code or GUID: <enter>
+    > # Check that the partition was created correctly
+    > $ p
+    > # Create new partition (swap partition)
+    > $ n
+    > $ Partition number: <enter>
+    > $ First sector: <enter>
+    > $ Last sector: +16G (i.e. your ram = 16GB)
+    > $ Hex code or GUID: 8200
+    > # Create new partition (/home)
+    > # Partition number: <enter>
+    > # First sector: <enter>
+    > # Last sector: <enter> (this will use all the remaining space available)
+    > $ Hex code or GUID: <enter>
+12. Format the partitions
+    > # List the partitions of your sistem and recognize the newly created ones
+    > $ lsblk
+    > # Format the root partition:
+    > $ mkfs.ext4 <root partition> (e.g. <root partition> = /dev/sda3)
+    > # Format the home partition:
+    > $ mkfs.ext4 <home partition> (e.g. <home partition> = /dev/sda5)
+    > * Swap partition must not be formatted
+13. Mount the created partitions to /mnt
+    > # Mount the root partition
+    > mount /dev/sda3 /mnt
+    > # Create mount point for the home partition and mount it
+    > $ mkdir /mnt/home
+    > $ mount /dev/sda5 /mnt/home
+    > # Create mount point for the boot partition and mount it
+    > $ mkdir /mnt/boot
+    > $ mount /dev/sda2 /mnt/boot (e.g. <efi partition> = /dev/sda2)
+15. Select the fastest mirrors for your connection
+    > # mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.orig
+    > $ rankmirrors -n 0 -v /etc/pacman.d/mirrorlist > /etc/pacman.d/mirrorlist
+    > $ rm /etc/pacman.d/mirrorlist.orig
+16. Install the base packages
+    > $ pacstrap /mnt base
+17. Configure the system
+    > # Generate an fstab file
+      > $ genfstab -U /mnt >> /mnt/etc/fstab
+      > # Check the result
+      > $ cat /mnt/etc/fstab
+      > * If swap partition is not assigned to a UUID, do the following:
+        > # Set up swap partition as swap area
+        > $ mkswap /dev/sda4 (e.g. <swap partition> = /dev/sda4)
+        > # Enable the device for paging
+        > $ swapon /dev/sda4
+        > # Run genfstab again
+        > $ genfstab -U /mnt >> /mnt/etc/fstab
+        > # Then edit the file and leave the last entries including the one
+            corresponding to the swap partition, and remove the old and repeated
+            ones.
+        > $ nano /mnt/etc/fstab
+    > # Change root into the new system
+      > $ arch-chroot /mnt
+    > # Set the time zone
+      > $ ln -sf /usr/share/zoneinfo/<Region>/<City> /etc/localtime
+          (e.g. America/Santiago)
+      > # Run hwclock to generate /etc/adjtime
+      > $ hwclock --systohc
+    > # Locale
+      > # Uncomment en_US.UTF-8 UTF-8 in /etc/locale.gen and then run:
+      > $ locale-gen
+      > * Set the lang variable in /etc/locale.conf
+        $ echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+      > * Make changes to keyboard layout permanent to /etc/vconsole.conf
+        $ echo "KEYMAP=es" > /etc/vconsole.conf
+      > * Create the hostname file, to /etc/hostanme append: <your-hostname>
+        $ echo "<your-hostname>" >> /etc/hostname
+      > * Add a matching entry to hosts, to /etc/hosts append:
+          127.0.1.1   <your-hostname>.localdomain   <your-hostname>
+      > * Set password
+        > $ passwd
+18. Systemd-boot bootloader installation
+    > Check you meet all requirements for systemd-boot installation, refer to:
+      https://wiki.archlinux.org/index.php/Systemd-boot#Installation
+      > Check that efivars are accesible
+      > $ exit
+      > # The next command should return a list of variables and values
+      > $ efivar -l
+      > $ arch-chroot /mnt
+      > # The next command should return the same previous list
+      > $ ls /sys/firmware/efi/efivars
+    > # Install systemd-bootloader
+    > $ bootctl --path=/boot install
+    > * If you have intel cpu install intel-ucode package
+    > $ pacman -S intel-ucode
+    > $ cat /usr/share/systemd/bootctl/loader.conf > /boot/loader/loader.conf
+    > $ nano /boot/loader/loader.conf
+      > Insert the following lines:
+        > default arch
+        > timeout 10
+        > editor 0
+    > $ cat /usr/share/systemd/bootctl/arch.conf > /boot/loader/entries/arch.conf
+    > $ blkid | grep <your-home-partition> >> /boot/loader/entries/arch.conf
+    > $ nano /boot/loader/entries/arch.conf
+      > Insert the following lines:
+        > title Arch Linux
+        > linux /vmlinuz-linux
+        > initrd /intel-ucode.img (If you have intel cpu)
+        > initrd /initramfs-linux.img
+        > options root=PARTUUID=<root partition PARTUUID> rootfstype=<root partition filesystem> add_efi_memmap
+          (root partition PARTUUID can be checked with blkid command)
+          ( linux, and initrd entries, correspond to binaries residing at /boot)
+
+19. Exit and reboot
+    > $ exit
+    > $ umount -R /mnt
+    > $ reboot
+
