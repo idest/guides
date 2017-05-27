@@ -52,14 +52,41 @@
         "match_tags": false
       }
 
-
-
 1. Install Packages for ST3
   > # In ST3:
   > Ctrl + Shift + P
   > Type install package, hit enter
   > # Following the previous steps install the following packages
     > Daylee Rees Color Scheme
+    > BracketHighlighter
+    > SidebarEnhancements
+    > SublimeCodeIntel
+    > Emmet
 
-
-    > Predawn
+2. Install SublimeLinter + Linters
+  > # Install nodejs
+    > Arch Linux:
+      > $ pacman -S nodejs npm
+    > MacOSX:
+      > $ Downlaod and install
+  > # Install SublimeLinter
+    > # At ST3: Install Package SublimeLinter
+  > # Install jshint
+    > $ npm install -g jshint
+    > # At ST3: Install Package > SublimeLinter-jshint
+  > # Install csslint
+    > $ npm install -g csslint
+    > # At ST3: Install Package > SublimeLinter-csslint
+  > # Install html-tidy
+    > Arch Linux:
+      > $ pacman -S tidy
+    > MacOSX:
+      > $ brew install tidy-html5
+    > # At ST3: Install Package > SublimeLinter-html-tidy
+  > # Install pylint
+    > # Install pip
+      > Arch Linux:
+      > pacman -S python-pip python-pip2
+    > $ pip install pylint
+    > $ pip2 install pylint
+    > # At ST3: Install Package > SublimeLinter-pylint
