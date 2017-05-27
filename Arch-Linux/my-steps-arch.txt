@@ -1,4 +1,4 @@
-################### SYSTEM ADMINISTRATION ###################
+################### DOCUMENTING MY STEPS ###################
 
 0. Network configuration
   > # Test network connection
@@ -166,6 +166,8 @@
   > # Edit .config/user-dirs.dirs and comment all directories you don't want
   > # Make changes permanent after login
   > $ echo "enabled=false" > ~/.config/user-dirs.conf
+  > # remove <directories> you dont want
+  > $ rm <directory>
 
 20. Create builds and AUR directories
   > $ mkdir ~/builds
