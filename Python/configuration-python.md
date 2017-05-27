@@ -1,13 +1,17 @@
 Pyhon Configuration
 ===================
 
-Install pylint
+Pylint
 --------------
+
+### Install
 
 `pip install pylint` and `pip2 install pylint`
 
-Install virtualenv and virtualenvwrapper
-----------------------------------------
+Virtualenv and virtualenvwrapper
+--------------------------------
+
+### Install
 
 `pip install virtualenv`
 
