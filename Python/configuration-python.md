@@ -21,7 +21,7 @@ Add the following lines to `~/.zshrc`:
 
 ###Useful Commands
 
-* List all virtual environments
+* List all virtual environments  
   `workon`
 * Make a _project_ folder in $PROJECT_HOME and `cd` to it  
   `mkproject _project_`
