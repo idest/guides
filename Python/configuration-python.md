@@ -2,7 +2,7 @@ Pyhon Configuration
 ===================
 
 Pylint
---------------
+------
 
 ### Install
 
@@ -35,3 +35,10 @@ Add the following lines to `~/.zshrc`:
 ### Workflow
 
 ...
+
+Matplotlib
+----------
+
+### Install
+
+`pip install matplotlib` and `pip2 install matplotlib`
