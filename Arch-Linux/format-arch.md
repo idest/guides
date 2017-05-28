@@ -42,7 +42,7 @@ Steps to format Arch Linux system
 ### Select the fastest mirrors for your connection
 
     $ mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
-    > rankmirrors -n 10 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+    $ rankmirrors -n 10 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 
 ### Remove old kernel files from boot partition
 
