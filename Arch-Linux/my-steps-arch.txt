@@ -190,3 +190,14 @@
 
 24. Install pip and pip2 for SublimeLinter-pylint
   > $ pacman -S python-pip python-pip2
+
+25. Install pylint
+  > $ pacman -S python-pylint
+  > $ pacman -S python2-pylint
+
+26. Install virtualenv and virtualenvwrapper
+  > $ pacman -S python-virtualenv
+  > $ pacman -S python-virtualenvwrapper
+
+27. Install matplotlib
+  > $ pacman -S python-matplotlib

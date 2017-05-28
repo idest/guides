@@ -1,17 +1,29 @@
 Pyhon Configuration
 ===================
 
-Install pylint
---------------
+Pylint
+------
 
-`pip install pylint` and `pip2 install pylint`
+### Install
 
-Install virtualenv and virtualenvwrapper
-----------------------------------------
+* Using pacman (recommended):  
+  `pacman -S python-pylint` and `pacman -S python2-pyliny'
 
-`pip install virtualenv`
+* Using pip:  
+  `pip install pylint` and `pip2 install pylint`
 
-`pip install virtualenvwrapper`
+Virtualenv and virtualenvwrapper
+--------------------------------
+
+### Install
+
+* Using pacman (recommended):  
+  `pacman -S python-virtualenv`  
+  `pacman -S python-virtualenvwrapper`
+
+* Using pip:  
+  `pip install virtualenv`  
+  `pip install virtualenvwrapper`
 
 Add the following lines to `~/.zshrc`:
 
@@ -19,13 +31,26 @@ Add the following lines to `~/.zshrc`:
     export PROJECT_HOME=$HOME/projects
     source /usr/local/bin/virtualenvwrapper.sh
 
-###Useful Commands
+### Useful Commands
 
-* List all virtual environments
+* List all virtual environments  
   `workon`
-* Make a _project_ folder in $PROJECT_HOME and `cd` to it
-  `mkproject _project_`
+* Make a `my_project` folder in $PROJECT_HOME and `cd` to it  
+  `mkproject my_project`
+* Deactivate current environment  
+  `deactivate`
 
-###Workflow
+### Workflow
 
 ...
+
+Matplotlib
+----------
+
+### Install
+
+* Using pacman (recommended):  
+  `pacman -S python-matplotlib` and `pacman -S python2-matplotlib`
+
+* Using pip:  
+  `pip install matplotlib` and `pip2 install matplotlib`
