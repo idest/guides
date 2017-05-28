@@ -44,21 +44,21 @@ Steps to format Arch Linux system
     $ mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
     $ rankmirrors -n 10 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 
-### Remove old kernel files from boot partition
+### Remove old kernel files from boot partition
 
     $ rm /mnt/boot/{vmlinuz-linux,initramfs-linux.img,initramfs-linux-fallback-img}
 
-### Install the base packages
+### Install the base packages
 
     $ pacstrap /mnt base
 
-### Generate an fstab file
+### Generate an fstab file
 
     $ mkswap swap_partition
     $ swapon swap_partition
     $ genfstab -U /mnt >> /mnt/etc/fstab
 
-### Change root into the new system
+### Change root into the new system
 
     $ arch-chroot /mnt
 
