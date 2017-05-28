@@ -35,7 +35,7 @@ Add the following lines to `~/.zshrc`:
 
 * List all virtual environments  
   `workon`
-* Make a `my_project` folder in $PROJECT_HOME and `cd` to it  
+* Make a `my_project` folder in $PROJECT_HOME and `cd` to it  
   `mkproject my_project`
 * Deactivate current environment  
   `deactivate`
