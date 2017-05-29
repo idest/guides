@@ -195,7 +195,7 @@ Install i3status status bar (this is not preconfigured but we will use it)
     #Set the font:
     font pango:DejaVu Sans Mono 9
     #
-    # Set the display configuration (run `swaymsg -t get_outputs` on sway terminal) to check your display):
+    # Set the display configuration (run `swaymsg -t get_outputs` from sway to check your display):
     output HDMI-A-2 resolution 1600x900 position 0,0
     #
     # Set a wallpaper (use 'stretch' or 'fill'):
