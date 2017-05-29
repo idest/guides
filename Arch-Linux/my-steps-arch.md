@@ -2,7 +2,7 @@ Documenting my steps on Arch Linux
 ==================================
 
 1\. Network configuration
-------------------------
+-------------------------
 
 #### Test network connection
 
@@ -31,8 +31,8 @@ If succesful press `ctrl + c` and skip to step 2
 
     $ systemctl enable dhcpcd@your_interface.service
 
-2. Add user
------------
+2\. Add user
+------------
 
     $ useradd -m -G wheel -s /bin/bash your_username
 
@@ -46,8 +46,8 @@ Where:
 
     $ passwd your_username
 
-3. Install and configure sudo
------------------------------
+3\. Install and configure sudo
+------------------------------
 
 #### Install sudo
     $ pacman -Syyu
@@ -63,13 +63,13 @@ Uncomment the following line in `/etc/sudoers`:
 
     %wheel ALL=(ALL) ALL
 
-4. Change login to your_username
---------------------------------
+4\. Change login to your_username
+---------------------------------
 
     $ exit
 
-5. Create relevant recovery files
----------------------------------
+5\. Create relevant recovery files
+----------------------------------
 
 #### Create recovery folder
 
@@ -108,20 +108,20 @@ Uncomment the following line in `/etc/sudoers`:
 
     $ comm -23 all_files.txt owned_files.txt > recovery/unowned_files.txt
 
-6. Install base-devel group
----------------------------
+6\. Install base-devel group
+----------------------------
 (needed for building packages from AUR)
 
     $ pacman -Syu
     $ pacman -S --needed base-devel
 
-7. Install git
---------------
+7\. Install git
+---------------
 
     $ pacman -Syu
     $ pacman -S git
 
-8. Install and configure zsh
+8\. Install and configure zsh
 -----------------------------
 
     $ pacman -Syu
@@ -150,14 +150,14 @@ Edit `.zshrc` and change/add the following lines:
     ZSH_THEME="agnoster"
     DEFAULT_USER="idest"
 
-9. Install mesa-vdpau
----------------------
+9\. Install mesa-vdpau
+----------------------
 
     $ pacman -Syu
     $ pacman -S mesa-vdpau
 
-10. Install sway
----------------
+10\. Install sway
+-----------------
 
     $ pacman -Syu
     $ pacman -S sway
@@ -176,8 +176,8 @@ Install i3status status bar (this is not preconfigured but we will use it)
 
     $ pacman - S i3status
 
-11. Configure sway
-------------------
+11\. Configure sway
+-------------------
 
 #### Copy the sample configuration file to your home and start editing it
 
@@ -250,8 +250,8 @@ Now everytime you want to run `sway` run `swayz` instead
 
   Set the environment variables WLC_REPEAT_DELAY/WLC_REPEAT_RATE to the delay/rate in milliseconds before starting sway.
 
-12. Set .Xdefaults
-------------------
+12\. Set .Xdefaults
+-------------------
 
 Add the following lines to ~/.Xdefaults (to set appareance of urxvt):
 (more configs: https://bbs.archlinux.org/viewtopic.php?id=56605)
@@ -324,8 +324,8 @@ Add the following lines to ~/.Xdefaults (to set appareance of urxvt):
     !*color15: #EFEFEF
 
 
-13. Install common applications
--------------------------------
+13\. Install common applications
+--------------------------------
 
 #### Browser
 
@@ -333,8 +333,8 @@ Add the following lines to ~/.Xdefaults (to set appareance of urxvt):
     $ pacman -S chromium
     # libx264, tff-DejaVu
 
-14. Install and configure Uncomplicated Firewall and its GUI
-------------------------------------------------------------
+14\. Install and configure Uncomplicated Firewall and its GUI
+-------------------------------------------------------------
 
     $ pacman -Syu
     $ pacman -S ufw
@@ -352,14 +352,14 @@ Add the following lines to ~/.Xdefaults (to set appareance of urxvt):
     # Install ufw GUI
     $ pacman -S gufw
 
-15. Create builds and AUR directories
--------------------------------------
+15\. Create builds and AUR directories
+--------------------------------------
 
     $ mkdir ~/builds
     $ mkdir ~/builds/AUR
 
-16. Install sublime-text-dev (Sublime Text 3 beta)
---------------------------------------------------
+16\. Install sublime-text-dev (Sublime Text 3 beta)
+---------------------------------------------------
 
     $ cd ~/builds/AUR
     $ git clone https://aur.archlinux.org/sublime-text-dev.git
@@ -368,12 +368,3 @@ Add the following lines to ~/.Xdefaults (to set appareance of urxvt):
     $ less PKGBUILD
     $ less sublime-text-dev.install
     $ makepkg -si
-
-17. Install nodejs npm for SublimeLinter
-  > $ pacman -S nodejs npm
-
-18. Install tidy for SublimeLinter-html-tidy
-  > $ pacman -S tidy
-
-19. Install pip and pip2 for SublimeLinter-pylint
-  > $ pacman -S python-pip python-pip2
