@@ -347,7 +347,7 @@ Add the following lines to ~/.Xdefaults (to set appareance of urxvt):
     # Install ufw GUI
     $ pacman -S gufw
 
-16\. Install sublime-text-dev (Sublime Text 3 beta)
+15\. Install sublime-text-dev (Sublime Text 3 beta)
 ---------------------------------------------------
 
 Get the PKGBUILD file from the AUR:
