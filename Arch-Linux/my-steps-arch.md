@@ -356,10 +356,17 @@ Add the following lines to ~/.Xdefaults (to set appareance of urxvt):
 16\. Install sublime-text-dev (Sublime Text 3 beta)
 ---------------------------------------------------
 
+Get the PKGBUILD file from the AUR:
+
     $ cd ~/builds/AUR
     $ git clone https://aur.archlinux.org/sublime-text-dev.git
     $ cd sublime-text-dev
-    # Always check files for malicious code
+  
+Always check files for malicious code
+
     $ less PKGBUILD
     $ less sublime-text-dev.install
+
+Finally, download, compile, package and install the package
+
     $ makepkg -si
