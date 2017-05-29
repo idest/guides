@@ -19,9 +19,11 @@ If succesful press `ctrl + c` and skip to step 2
 
 #### Get current device names
 
-    $ ls /sys/class/net
-  or
-    $ ip link
+    $ ls /sys/class/net  
+
+or  
+
+    $ ip link 
 
 #### Start dhcpcd daemon for a specific interface
 
