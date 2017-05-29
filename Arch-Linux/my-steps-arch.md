@@ -4,30 +4,30 @@ Documenting my steps on Arch Linux
 1. Network configuration
 ------------------------
 
-##### Test network connection
+#### Test network connection
 
     $ ping 8.8.8.8
 If succesful press `ctrl + c` and skip to step 2
 
-##### Check which kernel module contains the driver for your network device
+#### Check which kernel module contains the driver for your network device
 
     $ lspci -v
 
-##### Check the driver was loaded
+#### Check the driver was loaded
 
     $ dmesg | grep <kernel-module> (e.g. e1000e)
 
-##### Get current device names
+#### Get current device names
 
     $ ls /sys/class/net
   or
     $ ip link
 
-##### Start dhcpcd daemon for a specific interface
+#### Start dhcpcd daemon for a specific interface
 
     $ systemctl start dhcpcd@your_interface.service
 
-##### Enable dhcpcd service (To be started on bootup)
+#### Enable dhcpcd service (To be started on bootup)
 
     $ systemctl enable dhcpcd@your_interface.service
 
@@ -42,22 +42,22 @@ Where:
 `-G wheel` adds your_username to the weel group
 `-s /bin/bash` defines bash as the user's default login shell
 
-##### Set your password
+#### Set your password
 
     $ passwd your_username
 
 3. Install and configure sudo
 -----------------------------
 
-##### Install sudo
+#### Install sudo
     $ pacman -Syyu
     $ pacman -S sudo
 
-##### Configure sudo
+#### Configure sudo
 
     $ EDITOR=nano visudo
 
-##### Grant <username> sudo access
+#### Grant <username> sudo access
 
 Uncomment the following line in `/etc/sudoers`:
 
@@ -71,28 +71,28 @@ Uncomment the following line in `/etc/sudoers`:
 5. Create relevant recovery files
 ---------------------------------
 
-##### Create recovery folder
+#### Create recovery folder
 
     $ mkdir ~/recovery
 
-##### List of all excplicitly installed packages
+#### List of all excplicitly installed packages
 
     $ pacman -Qqe > recovery/pkglist.txt
 
-##### List of all installed optional dependencies
+#### List of all installed optional dependencies
 
     $ comm -13 <(pacman -Qqdt | sort) <(pacman -Qqdtt | sort) > optdeplist.txt
 
-##### List of all dependencies of base and base-devel
+#### List of all dependencies of base and base-devel
 
     $ comm -23 <(pacman -Qq | sort) <(pacman -Qgq base base-devel | sort) >> recovery/deps-base.txt
 
-##### Backup of important directories
+#### Backup of important directories
 
     $ cp /etc recovery/
     $ cp /var recovery/
 
-##### Configuration files
+#### Configuration files
 
     $ cp .* recovery/
 
@@ -100,7 +100,7 @@ Uncomment the following line in `/etc/sudoers`:
 
     $ tar -cjf recovery/pacman_database.tar.bz2 /var/lib/pacman/local
 
-##### Backup lists of files
+#### Backup lists of files
 
     $ find /etc /opt /usr | sort > recovery/all_files.txt
 
@@ -127,15 +127,15 @@ Uncomment the following line in `/etc/sudoers`:
     $ pacman -Syu
     $ pacman -S zsh zsh-completions
 
-##### Set zsh as the default shell
+#### Set zsh as the default shell
 
     $ chsh -s /bin/zsh
 
-##### Install Oh my zsh framework
+#### Install Oh my zsh framework
 
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-##### Install patched powerline fonts (This is for the zsh agnoster theme)
+#### Install patched powerline fonts (This is for the zsh agnoster theme)
 
     $ git clone https://github.com/powerline/fonts.git
     $ cd fonts
@@ -143,9 +143,9 @@ Uncomment the following line in `/etc/sudoers`:
     $ cd ..
     $ rm -rf fonts
 
-##### Set agnoster theme
+#### Set agnoster theme
 
-Edit `.zshrc`and change/add the following lines:
+Edit `.zshrc` and change/add the following lines:
 
     ZSH_THEME="agnoster"
     DEFAULT_USER="idest"
@@ -162,7 +162,7 @@ Edit `.zshrc`and change/add the following lines:
     $ pacman -Syu
     $ pacman -S sway
 
-##### Install the default software that sway is preconfigured to use
+#### Install the default software that sway is preconfigured to use
 
 Install urxvt terminal emulator
 
@@ -179,7 +179,7 @@ Install i3status status bar (this is not preconfigured but we will use it)
 11. Configure sway
 ------------------
 
-##### Copy the sample configuration file to your home and start editing it
+#### Copy the sample configuration file to your home and start editing it
 
     $ mkdir -p ~/.config/sway
     $ cp /etc/sway/config ~/.config/sway/
@@ -188,7 +188,7 @@ Install i3status status bar (this is not preconfigured but we will use it)
 (various configuration files: http://dotshare.it/category/wms/i3/)
 (sircmpwn configuration file: https://git.sr.ht/~sircmpwn/dotfiles/tree/.config/sway/config)
 
-##### Add/change the following lines to `~/.config/sway/config`
+#### Add/change the following lines to `~/.config/sway/config`
 
 Set the font:
 
@@ -220,7 +220,7 @@ Borderless windows:
     new_window pixel 1
     new_float pixel 1
 
-##### Set the keyboard layout
+#### Set the keyboard layout
 
 Create a script to run sway with the correct keyboard layout:
 
@@ -327,7 +327,7 @@ Add the following lines to ~/.Xdefaults (to set appareance of urxvt):
 13. Install common applications
 -------------------------------
 
-##### Browser
+#### Browser
 
     $ pacman -Syu
     $ pacman -S chromium
@@ -354,17 +354,20 @@ Add the following lines to ~/.Xdefaults (to set appareance of urxvt):
 
 15. Create builds and AUR directories
 -------------------------------------
-  > $ mkdir ~/builds
-  > $ mkdir ~/builds/AUR
+
+    $ mkdir ~/builds
+    $ mkdir ~/builds/AUR
 
 16. Install sublime-text-dev (Sublime Text 3 beta)
-  > $ cd ~/builds/AUR
-  > $ git clone https://aur.archlinux.org/sublime-text-dev.git
-  > $ cd sublime-text-dev
-  > # Always check files for malicious code
-  > $ less PKGBUILD
-  > $ less sublime-text-dev.install
-  > $ makepkg -si
+--------------------------------------------------
+
+    $ cd ~/builds/AUR
+    $ git clone https://aur.archlinux.org/sublime-text-dev.git
+    $ cd sublime-text-dev
+    # Always check files for malicious code
+    $ less PKGBUILD
+    $ less sublime-text-dev.install
+    $ makepkg -si
 
 17. Install nodejs npm for SublimeLinter
   > $ pacman -S nodejs npm
