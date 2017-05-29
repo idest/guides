@@ -187,7 +187,7 @@ Install i3status status bar (this is not preconfigured but we will use it)
     $ cp /etc/sway/config ~/.config/sway/
     $ nano ~/.config/sway/config
 
-(various configuration files: http://dotshare.it/category/wms/i3/)
+(various configuration files: http://dotshare.it/category/wms/i3/)  
 (sircmpwn configuration file: https://git.sr.ht/~sircmpwn/dotfiles/tree/.config/sway/config)
 
 #### Add/change the following lines to `~/.config/sway/config`
@@ -202,8 +202,10 @@ Set the display configuration (run `swaymsg -t get_outputs` on sway terminal) to
 
 Set a wallpaper:
 
-    output * bg ~/wallpaper.png stretch`
+    output * bg ~/wallpaper.png stretch
+
 or
+
     output * bg ~/wallpaper.png fill
 
 Set status bar:
@@ -234,7 +236,7 @@ Add the following lines to `~/bin/swayz`:
 
     #!/bin/bash
     export XKB_DEFAULT_LAYOUT=us,es
-    export XKB_DEFAULT_VARIANT=,nodeadkeys
+    export XKB_DEFAULT_VARIANT=,
     esport XKB_DEFAULT_OPTIONS=grp:alt_shift_toggle,
     sway
 
