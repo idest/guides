@@ -19,11 +19,11 @@ If succesful press `ctrl + c` and skip to step 2
 
 #### Get current device names
 
-    $ ls /sys/class/net  
+    $ ls /sys/class/net
 
-or  
+or
 
-    $ ip link 
+    $ ip link
 
 #### Start dhcpcd daemon for a specific interface
 
@@ -40,8 +40,8 @@ or
 
 Where:
 
-`-m` creates the folder `/home/your_username`  
-`-G wheel` adds your_username to the weel group  
+`-m` creates the folder `/home/your_username`
+`-G wheel` adds your_username to the weel group
 `-s /bin/bash` defines bash as the user's default login shell
 
 #### Set your password
@@ -152,6 +152,10 @@ Edit `.zshrc` and change/add the following lines:
     ZSH_THEME="agnoster"
     DEFAULT_USER="idest"
 
+### Add cool function to open programs as daemons:
+
+    function open() { $* >/dev/null 2>/dev/null & disown }
+
 9\. Install mesa-vdpau
 ----------------------
 
@@ -187,7 +191,7 @@ Install i3status status bar (this is not preconfigured but we will use it)
     $ cp /etc/sway/config ~/.config/sway/
     $ nano ~/.config/sway/config
 
-(various configuration files: http://dotshare.it/category/wms/i3/)  
+(various configuration files: http://dotshare.it/category/wms/i3/)
 (sircmpwn configuration file: https://git.sr.ht/~sircmpwn/dotfiles/tree/.config/sway/config)
 
 #### Add/change the following lines to `~/.config/sway/config`
@@ -221,7 +225,7 @@ Create a script to run sway with the correct keyboard layout:
     $ mkdir ~/bin
     $ nano ~/bin/swayz
 
-Add the following lines to `~/bin/swayz`:  
+Add the following lines to `~/bin/swayz`:
 (this code enables switching between the american and spanish layouts with alt + shift)
 
     #!/bin/bash
@@ -247,7 +251,7 @@ Now everytime you want to run `sway` run `swayz` instead
 12\. Set .Xdefaults
 -------------------
 
-Add the following lines to ~/.Xdefaults (to set appareance of urxvt):  
+Add the following lines to ~/.Xdefaults (to set appareance of urxvt):
 (more configs: https://bbs.archlinux.org/viewtopic.php?id=56605)
 
     ! urxvt
@@ -325,7 +329,7 @@ Add the following lines to ~/.Xdefaults (to set appareance of urxvt):
 
     $ pacman -Syu
     $ pacman -S chromium
-  
+
 (choose libx264 and tff-DejaVu)
 
 14\. Install and configure Uncomplicated Firewall and its GUI
@@ -356,7 +360,7 @@ Get the PKGBUILD file from the AUR:
     $ cd ~/builds/AUR
     $ git clone https://aur.archlinux.org/sublime-text-dev.git
     $ cd sublime-text-dev
-  
+
 Always check files for malicious code
 
     $ less PKGBUILD
