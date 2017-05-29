@@ -247,7 +247,7 @@ Now everytime you want to run `sway` run `swayz` instead
 12\. Set .Xdefaults
 -------------------
 
-Add the following lines to ~/.Xdefaults (to set appareance of urxvt):
+Add the following lines to ~/.Xdefaults (to set appareance of urxvt):  
 (more configs: https://bbs.archlinux.org/viewtopic.php?id=56605)
 
     ! urxvt
