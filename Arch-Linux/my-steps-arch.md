@@ -192,34 +192,24 @@ Install i3status status bar (this is not preconfigured but we will use it)
 
 #### Add/change the following lines to `~/.config/sway/config`
 
-Set the font:
-
+    #Set the font:
     font pango:DejaVu Sans Mono 9
-
-Set the display configuration (run `swaymsg -t get_outputs` on sway terminal) to check your display):
-
+    #
+    # Set the display configuration (run `swaymsg -t get_outputs` on sway terminal) to check your display):
     output HDMI-A-2 resolution 1600x900 position 0,0
-
-Set a wallpaper:
-
+    #
+    # Set a wallpaper (use 'stretch' or 'fill'):
     output * bg ~/wallpaper.png stretch
-
-or
-
-    output * bg ~/wallpaper.png fill
-
-Set status bar:
-
+    #
+    # Set status bar:
     bar {
       status_command i3status
     }
-
-Set the browser:
-
+    #
+    #Set your favorite browser:
     set $browser chromium
-
-Borderless windows:
-
+    #
+    #Borderless windows:
     for_window [class="^.*"] border pixel 1
     new_window pixel 1
     new_float pixel 1
