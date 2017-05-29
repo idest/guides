@@ -17,7 +17,21 @@
       ]
     }
 
-2. Add syntax specific settings
+2. Add syntax specific settings:
+
+Open a file in the target language and go to Settings > Syntax Specific
+
+* For Python:
+
+    {
+      "rulers":
+      [
+        79
+      ],
+      "translate_tabs_to_spaces": true,
+      "tab_size": 4,
+    }
+
 
 3. Install Package Control
   > # Go to packagecontrol.io/installation
