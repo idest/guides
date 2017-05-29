@@ -1,7 +1,7 @@
 Documenting my steps on Arch Linux
 ==================================
 
-1. Network configuration
+\1. Network configuration
 ------------------------
 
 #### Test network connection
