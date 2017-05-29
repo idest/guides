@@ -40,8 +40,8 @@ or
 
 Where:
 
-`-m` creates the folder `/home/your_username`
-`-G wheel` adds your_username to the weel group
+`-m` creates the folder `/home/your_username`  
+`-G wheel` adds your_username to the weel group  
 `-s /bin/bash` defines bash as the user's default login shell
 
 #### Set your password
