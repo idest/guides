@@ -156,11 +156,22 @@ Edit `.zshrc` and change/add the following lines:
 
     function open() { $* >/dev/null 2>/dev/null & disown }
 
-9\. Install mesa-vdpau
+9\. Install needed libraries
 ----------------------
+
+#### mesa-vdpau
 
     $ pacman -Syu
     $ pacman -S mesa-vdpau
+
+#### alsa-utils
+
+    $ pacman -Syu
+    $ pacman -S alsa-utils
+
+Unmute the sound
+
+    $ amixer sset Master unmute
 
 10\. Install sway
 -----------------
@@ -369,3 +380,27 @@ Always check files for malicious code
 Finally, download, compile, package and install the package
 
     $ makepkg -si
+
+16. Install Python modules
+--------------------------
+
+(python was already installed as a dependency to ufw)
+
+    $ pacman -S python-virtualenv
+    $ pacman -S python-virtualenvwrapper
+
+Add the following lines to .zshrc:
+
+    export WORKON_HOME=$HOME/.virtualenvs
+    export PROJECT_HOME=$HOME/projects
+    source /usr/bin/virtualenvwrapper.sh
+
+    $ pacman -S python-numpy python2-numpy
+    $ pacman -S python-matplotlib python2-matplotlib
+
+Install VTK and its (required for us) optional dependencies
+-----------------------------------------------------------
+    $ pacman -S vtk
+    $ pacman -S jsoncpp libtheora ffmpeg gdal unixodbc openmpi
+
+
