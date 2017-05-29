@@ -347,17 +347,12 @@ Add the following lines to ~/.Xdefaults (to set appareance of urxvt):
     # Install ufw GUI
     $ pacman -S gufw
 
-15\. Create builds and AUR directories
---------------------------------------
-
-    $ mkdir ~/builds
-    $ mkdir ~/builds/AUR
-
 16\. Install sublime-text-dev (Sublime Text 3 beta)
 ---------------------------------------------------
 
 Get the PKGBUILD file from the AUR:
 
+    $ mkdir -p ~/builds/AUR
     $ cd ~/builds/AUR
     $ git clone https://aur.archlinux.org/sublime-text-dev.git
     $ cd sublime-text-dev
