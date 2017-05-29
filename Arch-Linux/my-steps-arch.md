@@ -221,8 +221,8 @@ Create a script to run sway with the correct keyboard layout:
     $ mkdir ~/bin
     $ nano ~/bin/swayz
 
-Add the following lines to `~/bin/swayz`:
-(this code enables switching between the american and spanish layouts with alt + shift):
+Add the following lines to `~/bin/swayz`:  
+(this code enables switching between the american and spanish layouts with alt + shift)
 
     #!/bin/bash
     export XKB_DEFAULT_LAYOUT=us,es
@@ -325,7 +325,8 @@ Add the following lines to ~/.Xdefaults (to set appareance of urxvt):
 
     $ pacman -Syu
     $ pacman -S chromium
-    # libx264, tff-DejaVu
+  
+(choose libx264 and tff-DejaVu)
 
 14\. Install and configure Uncomplicated Firewall and its GUI
 -------------------------------------------------------------
