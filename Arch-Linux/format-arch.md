@@ -1,5 +1,5 @@
 Steps to format Arch Linux system
----------------------------------
+=================================
 
 ### Save any valuable files from the root partition into the home partition
 
