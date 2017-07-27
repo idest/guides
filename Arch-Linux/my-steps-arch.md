@@ -340,6 +340,7 @@ Add the following lines to ~/.Xdefaults (to set appareance of urxvt):
 
     $ pacman -Syu
     $ pacman -S chromium
+    $ pacman -S firefox
 
 (choose libx264 and tff-DejaVu)
 
@@ -403,4 +404,10 @@ Install VTK and its (required for us) optional dependencies
     $ pacman -S vtk
     $ pacman -S jsoncpp libtheora ffmpeg gdal unixodbc openmpi
 
+Install qt4 qt5
+---------------
 
+Install tk for python
+---------------------
+
+    $ pacman -Syu tk
