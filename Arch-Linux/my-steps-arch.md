@@ -406,6 +406,7 @@ Add the following lines to .zshrc:
 
     $ pacman -S python-numpy python2-numpy
     $ pacman -S python-matplotlib python2-matplotlib
+    $ pacman -S python2-basemap
 
 Install VTK and its (required for us) optional dependencies
 -----------------------------------------------------------
