@@ -5,7 +5,7 @@ npm Installation
 
 * On MacOSX:
 
-Download the node.js macOS Installer .pkg from: http://nodejs.org/en/download/ and install it.
+  Download the node.js macOS Installer .pkg from: http://nodejs.org/en/download/ and install it.
 
 #### Update npm
 
