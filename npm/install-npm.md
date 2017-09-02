@@ -6,10 +6,11 @@ npm Installation
 * On MacOSX:
 
   Download the node.js macOS Installer .pkg from: http://nodejs.org/en/download/ and install it.
-  
+
 * On Archlinux:
 
       $ sudo pacman -S nodejs
+      $ sudo pacman -S npm
 
 #### Update npm
 
