@@ -165,6 +165,18 @@ Unmute the sound
 
     $ amixer sset Master unmute
 
+Run alsa mixer, to control the volume levels
+
+    $ alsamixer
+
+Install a sound server, for advanced audio requirments. (And for firefox sound)
+
+    $ pacman -Syu pulseaudio
+
+Install pulseaudio's mixer
+
+    $ pacman -Syu pamixer
+
 10\. Install sway
 -----------------
 
@@ -334,6 +346,10 @@ Add the following lines to ~/.Xdefaults (to set appareance of urxvt):
     $ pacman -S chromium
     $ pacman -S firefox
 
+And for firefox audio to work:
+
+    $ pacman -S PulseAudio
+
 (choose libx264 and tff-DejaVu)
 
 14\. Install and configure Uncomplicated Firewall and its GUI
@@ -403,3 +419,18 @@ Install tk for python
 ---------------------
 
     $ pacman -Syu tk
+
+Install xprop
+-------------
+
+    $ pacman -Syu xorg-xprop
+
+Install imagemagick (for swaygrab)
+----------------------------------
+
+    $ pacman -Syu imagemagick
+
+Install evince(pdf viewer)
+--------------------------
+
+    $ pacman -Syu evince
