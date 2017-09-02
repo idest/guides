@@ -178,7 +178,7 @@ Install Archlinux / Dual Boot Windows (UEFI)
         > timeout 10
         > editor 0
     > $ cat /usr/share/systemd/bootctl/arch.conf > /boot/loader/entries/arch.conf
-    > $ blkid | grep <your-home-partition> >> /boot/loader/entries/arch.conf
+    > $ blkid | grep <your-root-partition> >> /boot/loader/entries/arch.conf
     > $ nano /boot/loader/entries/arch.conf
       > Insert the following lines:
         > title Arch Linux

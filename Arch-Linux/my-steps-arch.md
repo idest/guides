@@ -9,14 +9,6 @@ Documenting my steps on Arch Linux
     $ ping 8.8.8.8
 If succesful press `ctrl + c` and skip to step 2
 
-#### Check which kernel module contains the driver for your network device
-
-    $ lspci -v
-
-#### Check the driver was loaded
-
-    $ dmesg | grep <kernel-module> (e.g. e1000e)
-
 #### Get current device names
 
     $ ls /sys/class/net
@@ -340,6 +332,7 @@ Add the following lines to ~/.Xdefaults (to set appareance of urxvt):
 
     $ pacman -Syu
     $ pacman -S chromium
+    $ pacman -S firefox
 
 (choose libx264 and tff-DejaVu)
 
@@ -403,4 +396,10 @@ Install VTK and its (required for us) optional dependencies
     $ pacman -S vtk
     $ pacman -S jsoncpp libtheora ffmpeg gdal unixodbc openmpi
 
+Install qt4 qt5
+---------------
 
+Install tk for python
+---------------------
+
+    $ pacman -Syu tk
