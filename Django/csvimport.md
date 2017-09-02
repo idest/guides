@@ -65,3 +65,24 @@ Click on save
     >>> from csvimport.tests.models import Country
     >>> Country.objects.all()
     >>> exit()
+
+### Install csvimport
+
+From your virtual environment run:
+
+pip install django-csvimport
+
+#### Change your <django_project> settings.py file
+
+Add the following line to `settings.py` under the INSTALLED_APPS section:
+
+    INSTALLED_APPS = (
+        'csvimport.app.CSVImportConf',
+    )
+
+#### Remove the test migration tables from csvimport
+
+Do this to avoid cluttering your database with test tables from csvimport
+
+    $ cdsitepackages
+    $ rm csvimport/migrations/0002_test_models.py

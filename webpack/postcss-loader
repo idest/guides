@@ -1,0 +1,55 @@
+#### postcss-loader
+
+### Install postcss-loader
+
+    $ npm install postcss-loader --save-dev
+
+### Create postss.config.js
+
+Add the following lines to `postcss.config.js`:
+
+    module.exports = {
+      plugins: [
+        require('autoprefixer')
+      ]
+    };
+
+### Add postcss-loader to your webpack config
+
+Add the following lines to `webpack.config.js`
+
+    module.exports = {
+      ...
+      module: {
+        rules: [{
+          test: /\.css$/,
+          use: [{
+            loader: 'style-loader'
+          }, {
+            loader: 'css-loader'
+          }, {
+            loader: 'postcss-loader'
+          }]
+        }]
+      }
+    };
+
+Or if you want to use it in conjunction with a preloader like sass:
+
+    module.exports = {
+      ...
+      module: {
+        rules: [{
+          test: /.scss$/,
+          use: [{
+            loader: 'style-loader'
+          }, {
+            loader: 'css-loader'
+          }, {
+            loader: 'postcss-loader'
+          }, {
+            loader: 'sass-loader'
+          }]
+        }]
+      }
+    };

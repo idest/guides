@@ -1,0 +1,44 @@
+### Bootstrap integration
+
+#### Install bootstrap 3 and a compatible jquery version
+
+    $ npm install bootstrap@3 --save
+    $ npm install jquery@1.12.4 --save
+
+If you want to use bootstrap precompiled SASS
+
+    $ npm install bootstrap-sass -save
+
+#### Let bootstrap find jquery
+
+Add the following lines to `webpack.config.js`:
+
+    module.exports = {
+      ...
+      plugins: [
+      ...,
+      new webpack.ProvidePlugin({
+        jQuery: 'jquery', //this is the one Bootstrap needs
+        //$: 'jquery',
+        //jquery: 'jquery' //Angular needs this
+      })
+      ]
+    }
+
+#### Usage
+
+For the js part of bootstrap, whenever you require it just do:
+
+    import bootstrap
+
+To load the bootstrap precompiled SASS, add this to your main sass file
+
+    @import 'bootstrap';
+
+If that doesn't work you can just add the following line to your main sass file:
+
+    @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+
+To load the compiled CSS only, import the css to your main.js file:
+
+    import 'bootstrap/dist/css/bootstrap.css';
