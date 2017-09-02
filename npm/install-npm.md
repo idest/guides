@@ -9,8 +9,7 @@ npm Installation
   
 * On Archlinux:
 
-
-    $ sudo pacman -S nodejs
+      $ sudo pacman -S nodejs
 
 #### Update npm
 
