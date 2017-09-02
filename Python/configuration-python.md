@@ -1,4 +1,4 @@
-Pyhon Configuration
+Python Configuration
 ===================
 
 Pylint
