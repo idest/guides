@@ -12,10 +12,6 @@ npm Installation
       $ sudo pacman -S nodejs
       $ sudo pacman -S npm
 
-#### Update npm
-
-    $ sudo npm install npm -g
-
 #### Fixing npm permissions
 
 Change the location of the npm global packages
@@ -28,6 +24,10 @@ Add your .npm-global/bin folder to your PATH
 Add the following line to your .bash_profile (MacOSX) or .bashrc (Linux) file:
 
     export PATH=$HOME/.npm-global:$PATH
+
+#### Update npm
+
+    $ sudo npm install npm -g
 
 #### Fix symlink to npm
 
