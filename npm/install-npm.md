@@ -27,7 +27,7 @@ Add the following line to your .bash_profile (MacOSX) or .bashrc (Linux) file:
 
 #### Update npm
 
-    $ npm update npm -g
+    $ npm install npm -g
 
 #### Fix symlink to npm
 
