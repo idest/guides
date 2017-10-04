@@ -31,6 +31,6 @@ Add the following line to your .bash_profile (MacOSX) or .bashrc (Linux) file:
 
 #### Fix symlink to npm
 
-This fix is needed if in the future you update npm via `npm update -g npm`, as this command will replace your current npm-cli.js location.
+This fix is needed if you updated npm via `npm update -g npm`, after running `npm config set prefix $HOME/.npm-global` as this will replace your current npm-cli.js location.
 
 You will need to change the symlink in `/usr/local/bin/npm` currently pointing to `/usr/local/lib/node_modules/npm/bin/npm-cli.js` for a symlink pointing to `~/.npm-global/lib/node-modules/npm/bin/npm-cli.js`
